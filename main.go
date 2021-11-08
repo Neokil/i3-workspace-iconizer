@@ -41,18 +41,29 @@ func main() {
 }
 
 func loadConfig() {
+	fmt.Println("loading config from ~/.i3-workspace-iconizer")
 	config = &Config{
 		Separator:   " ",
 		DefaultIcon: "ﬓ",
 		Icons:       map[string]string{},
 	}
-
-	b, err := os.ReadFile("config.json")
+	home, err := os.UserHomeDir()
 	if err != nil {
+		fmt.Println("failed to get user-home-dir, using default config: " + err.Error())
 		return
 	}
 
-	_ = json.Unmarshal(b, config)
+	b, err := os.ReadFile(home + "/.i3-workspace-iconizer")
+	if err != nil {
+		fmt.Println("failed to read config, using default config: " + err.Error())
+		return
+	}
+
+	err = json.Unmarshal(b, config)
+	if err != nil {
+		fmt.Println("failed to unmarshal config, using default config: " + err.Error())
+		return
+	}
 }
 
 func updateWorkspaceNames() {
