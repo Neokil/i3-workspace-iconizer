@@ -1,0 +1,11 @@
+{
+    "Separator": " ",
+    "DefaultIcon": "ﬓ",
+    "Icons": {
+        "Code":                 "",
+        "Google-chrome":        "",
+        "Gnome-terminal":       "",
+        "Gnome-control-center": "煉",
+        "Org.gnome.Nautilus":   ""
+    }
+}
